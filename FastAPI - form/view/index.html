@@ -1,0 +1,27 @@
+{% extends "components/layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="row m-sm-5 m-3">
+    <h1 class="col">Formulario de Prueba</h1>
+</div>
+
+<section class="row justify-content-center">
+    <form method="post" action="/user" class="col-sm-5 col-10">
+    <div class="mb-3">
+        <label for="exampleInputUsername" class="form-label">Usuario</label>
+        <input
+        name="username"
+        type="text"
+        class="form-control"
+        id="exampleInputUsername"
+        required
+        />
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">CLave</label>
+        <input name="password_user" type="password" class="form-control" id="exampleInputPassword1" required/>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</section>
+{% endblock %}
