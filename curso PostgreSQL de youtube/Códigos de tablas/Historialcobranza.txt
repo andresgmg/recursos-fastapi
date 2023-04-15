@@ -1,0 +1,31 @@
+CREATE TABLE historialcobranza(
+idcliente INTEGER,
+nombre VARCHAR(45),
+apellidopaterno VARCHAR(45),
+apellidomaterno VARCHAR(45),
+cantidadllamadas INTEGER DEFAULT 0
+);
+
+ INSERT INTO historialcobranza (idcliente,nombre,apellidopaterno,apellidomaterno)
+  SELECT distinct  idcliente,nombre,apellidopaterno,apellidomaterno FROM cobranza
+
+
+
+Esto en Postgres
+
+UPDATE historialcobranza SET cantidadllamadas=subquery.contador 
+	from (
+		select 
+			idcliente,
+			count(distinct fechacobro::date) as contador 
+		from cobranza group by 1) as subquery
+	where historialcobranza.idcliente=subquery.idcliente;
+
+-----------------------------------------------------------
+
+UPDATE historialcobranza h
+JOIN temp t
+ON t.idcliente=h.idcliente
+SET cantidadllamadas=t.contador
+
+    

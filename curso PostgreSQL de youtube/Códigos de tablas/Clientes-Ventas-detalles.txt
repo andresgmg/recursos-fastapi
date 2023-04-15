@@ -1,0 +1,63 @@
+CREATE TABLE clientes(
+id_cliente INTEGER PRIMARY KEY,
+nombre_cliente VARCHAR(45)
+);
+
+CREATE TABLE ventas(
+id_venta INTEGER PRIMARY KEY,
+id_cliente INTEGER,
+CONSTRAINT FK_id_ventas FOREIGN KEY (id_cliente)
+ REFERENCES clientes(id_cliente)
+);
+
+
+CREATE TABLE detalle_ventas(
+id_venta INTEGER PRIMARY KEY,
+descripcion VARCHAR(45),
+cantidad INTEGER,
+CONSTRAINT FK_id_detalles FOREIGN KEY (id_venta)
+ REFERENCES ventas(id_venta)
+);
+
+INSERT INTO clientes VALUES(10000,'Juan Roman');
+INSERT INTO clientes VALUES(10001,'Jose Esparza');
+INSERT INTO clientes VALUES(10002,'Lucia Gamez');
+INSERT INTO clientes VALUES(10003,'Alberto Luna');
+INSERT INTO clientes VALUES(10004,'Jonas Estrada');
+INSERT INTO clientes VALUES(10005,'Daniel Gomez');
+INSERT INTO clientes VALUES(10006,'Carlos Sanchez');
+INSERT INTO clientes VALUES(10007,'Ramon Lopez');
+INSERT INTO clientes VALUES(10008,'Celeste Luna');
+INSERT INTO clientes VALUES(10009,'Luz Espino');
+
+INSERT INTO ventas VALUES(1,10000);
+INSERT INTO ventas VALUES(2,10001);
+INSERT INTO ventas VALUES(3,10004);
+INSERT INTO ventas VALUES(4,10001);
+INSERT INTO ventas VALUES(5,10001);
+INSERT INTO ventas VALUES(6,10002);
+INSERT INTO ventas VALUES(7,10003);
+INSERT INTO ventas VALUES(8,10000);
+INSERT INTO ventas VALUES(9,10001);
+INSERT INTO ventas VALUES(10,10000);
+INSERT INTO ventas VALUES(11,10008);
+INSERT INTO ventas VALUES(12,10008);
+INSERT INTO ventas VALUES(13,10007);
+INSERT INTO ventas VALUES(14,100005);
+INSERT INTO ventas VALUES(15,100005);
+
+INSERT INTO detalle_ventas VALUES(1,'Cartón 100 plumas VICO',4);
+INSERT INTO detalle_ventas VALUES(2,'Paquete 100 hojas blancas tam carta',8);
+INSERT INTO detalle_ventas VALUES(3,'Cartón 100 lapices VICO',2);
+INSERT INTO detalle_ventas VALUES(4,'Paquete 50 borradores Almanza',1);
+INSERT INTO detalle_ventas VALUES(5,'Paquete 50 lapiceros Almanza',1);
+INSERT INTO detalle_ventas VALUES(6,'Paquete 50 sacapuntas Almanza',4);
+INSERT INTO detalle_ventas VALUES(7,'Cartón 100 plumas VICO',1);
+INSERT INTO detalle_ventas VALUES(8,'Cartón 100 lapices VICO',4);
+INSERT INTO detalle_ventas VALUES(9,'Plumón Aqua',25);
+INSERT INTO detalle_ventas VALUES(10,'Cartón 100 plumas VICO',1);
+INSERT INTO detalle_ventas VALUES(11,'Cartón 100 plumas VICO',2);
+INSERT INTO detalle_ventas VALUES(12,'Cartón 100 lapices VICO',6);
+INSERT INTO detalle_ventas VALUES(13,'Paquete 100 hojas blancas tam carta',4);
+INSERT INTO detalle_ventas VALUES(14,'Paquete 100 hojas blancas tam oficio',4);
+INSERT INTO detalle_ventas VALUES(15,'Paquete 100 hojas blancas tam carta',80);

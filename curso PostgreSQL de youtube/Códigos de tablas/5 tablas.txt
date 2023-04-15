@@ -1,0 +1,126 @@
+CREATE TABLE ventas(
+ventaid INTEGER PRIMARY KEY,
+vendedorid INTEGER,
+clienteid INTEGER,
+descuento DECIMAL(3,2),
+CONSTRAINT FK_id_vendedor FOREIGN KEY (vendedorid)
+ REFERENCES vendedor(vendedorid),
+CONSTRAINT FK_id_cliente FOREIGN KEY (clienteid)
+ REFERENCES clientes(clienteid)
+);
+CREATE TABLE clientes(
+clienteid INTEGER PRIMARY KEY,
+nombre VARCHAR(45),
+tel_cliente BIGINT
+
+);
+CREATE TABLE detalle_ventas(
+ventaid INTEGER PRIMARY KEY,
+cantidad INTEGER,
+productoid INTEGER,
+CONSTRAINT FK_id_venta FOREIGN KEY (ventaid)
+ REFERENCES ventas(ventaid),
+CONSTRAINT FK_id_producto FOREIGN KEY (productoid)
+ REFERENCES productos(productoid)
+
+);
+CREATE TABLE vendedor(
+
+vendedorid INTEGER PRIMARY KEY,
+nombre_vendedor VARCHAR(45),
+tel_vendedor SMALLINT
+
+);
+CREATE TABLE productos(
+productoid INTEGER PRIMARY KEY,
+descripcion VARCHAr(100),
+precio DOUBLE PRECISION
+
+);
+INSERT INTO ventas VALUES(1,8500,10000,5);
+INSERT INTO ventas VALUES(2,8501,10000,5);
+INSERT INTO ventas VALUES(3,8502,10001,5);
+INSERT INTO ventas VALUES(4,8503,10002,5);
+INSERT INTO ventas VALUES(5,8501,10001,5);
+INSERT INTO ventas VALUES(6,8501,10004,5);
+INSERT INTO ventas VALUES(7,8502,10008,5);
+INSERT INTO ventas VALUES(8,8501,10007,5);
+INSERT INTO ventas VALUES(9,8504,10005,5);
+INSERT INTO ventas VALUES(10,8504,10004,5);
+INSERT INTO ventas VALUES(11,8502,10004,5);
+INSERT INTO ventas VALUES(12,8501,10006,5);
+INSERT INTO ventas VALUES(13,8503,10005,5);
+INSERT INTO ventas VALUES(14,8504,10006,5);
+INSERT INTO ventas VALUES(15,8501,10001,5);
+
+INSERT INTO clientes VALUES(10000,'Luis Perez',2234567834);
+INSERT INTO clientes VALUES(10001,'Carlos Valderde',4444567834);
+INSERT INTO clientes VALUES(10002,'Daniel Alvarez',1214567834);
+INSERT INTO clientes VALUES(10003,'Alvaro Luna',1234588834);
+INSERT INTO clientes VALUES(10004,'Laura Gomez',1234589934);
+INSERT INTO clientes VALUES(10005,'Adal Sanchez',1774567834);
+INSERT INTO clientes VALUES(10006,'Fausto Esparza',1234557834);
+INSERT INTO clientes VALUES(10007,'Gabriel Lopez',1234566634);
+INSERT INTO clientes VALUES(10008,'Juan Gamez',1234564534);
+INSERT INTO clientes VALUES(10009,'Laura Maria Lopez',1234567454);
+INSERT INTO clientes VALUES(10010,'Antonio Lopez',1234564234);
+INSERT INTO clientes VALUES(10011,'Adamari Perez',1234568934);
+INSERT INTO clientes VALUES(10012,'Antonieta Nieves',1844567834);
+INSERT INTO clientes VALUES(10013,'Roberto Perez',1233367834);
+INSERT INTO clientes VALUES(10014,'Anastasia Cervantes',1239967834);
+INSERT INTO clientes VALUES(10015,'Claudina Garza',1234560034);
+INSERT INTO clientes VALUES(10016,'Yesenia Delgado',1230067834);
+INSERT INTO clientes VALUES(10017,'Maria Delgado',1234567004);
+INSERT INTO clientes VALUES(10018,'Carlos Gomez',1234567800);
+INSERT INTO clientes VALUES(10019,'Luis Sanchez',1234524834);
+INSERT INTO clientes VALUES(10020,'Claudia Espino',1234525834);
+INSERT INTO clientes VALUES(10021,'Raul Gamez',1234562834);
+INSERT INTO clientes VALUES(10022,'Daniela Perez',1234127834);
+INSERT INTO clientes VALUES(10023,'Graciela Sanchez',1268567834);
+INSERT INTO clientes VALUES(10024,'Luis Perez Garza',1234887834);
+
+INSERT INTO productos VALUES(100,'Lata de atun Medusa 400 g',50.2);
+INSERT INTO productos VALUES(101,'Lata de camaron condimentado Medusa 400 g',120.5);
+INSERT INTO productos VALUES(102,'Lata de camaron sin condimentos Medusa 400 g',112);
+INSERT INTO productos VALUES(103,'Lata de ostiones Medusa 400 g',100.1);
+INSERT INTO productos VALUES(104,'Lata de frijoles refritos 500 g',25);
+INSERT INTO productos VALUES(105,'Lata de atun Medusa 1000 g',100);
+INSERT INTO productos VALUES(106,'Lata de camaron condimentado Medusa 1000 g',200);
+INSERT INTO productos VALUES(107,'Lata de carne asada Medusa 500 g',80);
+INSERT INTO productos VALUES(108,'Lata de refresco Medusa 300 ml',15);
+INSERT INTO productos VALUES(109,'Refresco Medusa 600 ml',18);
+INSERT INTO productos VALUES(110,'Refresco Medusa 1L',22);
+INSERT INTO productos VALUES(111,'Refresco Medusa 2L',28);
+
+INSERT INTO vendedor VALUES(8501,'Agustin Perez',2222222222);
+INSERT INTO vendedor VALUES(8502,'Carmela Sanchez',3322222222);
+INSERT INTO vendedor VALUES(8503,'Laura Lara',2248222222);
+INSERT INTO vendedor VALUES(8504,'Laura Esparza',2278222222);
+
+INSERT INTO detalle_ventas VALUES(1,4,111);
+INSERT INTO detalle_ventas VALUES(2,1,109);
+INSERT INTO detalle_ventas VALUES(3,2,100);
+INSERT INTO detalle_ventas VALUES(4,1,101);
+INSERT INTO detalle_ventas VALUES(5,8,103);
+INSERT INTO detalle_ventas VALUES(6,25,102);
+INSERT INTO detalle_ventas VALUES(7,4,111);
+INSERT INTO detalle_ventas VALUES(8,1,110);
+INSERT INTO detalle_ventas VALUES(9,2,108);
+INSERT INTO detalle_ventas VALUES(10,3,107);
+INSERT INTO detalle_ventas VALUES(11,3,104);
+INSERT INTO detalle_ventas VALUES(12,8,111);
+INSERT INTO detalle_ventas VALUES(13,4,110);
+INSERT INTO detalle_ventas VALUES(14,100,111);
+INSERT INTO detalle_ventas VALUES(15,4,111);
+
+
+
+
+
+
+
+
+
+
+
+

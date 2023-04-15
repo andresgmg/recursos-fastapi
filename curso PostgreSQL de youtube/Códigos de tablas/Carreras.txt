@@ -1,0 +1,16 @@
+Carreras
+
+CREATE TABLE carreras(
+idcarrera INTEGER PRIMARY KEY,
+nombrecarrera VARCHAR(45)
+);
+
+INSERT INTO carreras(idcarrera,nombrecarrera)
+VALUES(1,'Psicologia'),(2,'Ingenieria en Sistemas'),(3,'Contabilidad'),(4,'Ingenieria Quimica'),
+(5,'Mercadotecnia'),(6,'Arquitectura'),(7,'Administracion de empresas'),(8,'Medicina');
+
+SELECT a.numcontrol,a.nombre,a.apellidopaterno,a.apellidomaterno,a.idcarrera,c.nombrecarrera FROM alumnos a
+INNER JOIN carreras c
+ON a.idcarrera=c.idcarrera
+
+ALTER TABLE alumnos ADD COLUMN cantidadbeca DECIMAL(7,2) DEFAULT 0;

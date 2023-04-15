@@ -1,0 +1,124 @@
+CREATE TABLE libros(
+codigolibro INTEGER,
+titulo VARCHAR(40),
+codigoautor INTEGER,
+codigoeditorial INTEGER,
+precio DECIMAL(5,2),
+cantidad SMALLINT,
+			
+PRIMARY KEY(codigolibro)
+);
+
+INSERT INTO libros(codigolibro,titulo, codigoautor,codigoeditorial,precio,cantidad)
+VALUES(10001,'el aleph',1,220,450,5),
+(10002,'El conejito',1,221,200.5,2),
+(10003,'El elefante',5,222,100.5,3),
+(10004,'Sor Juana',3,223,400,4),
+(10005,'La Bella',2,224,500.5,1),
+(10006,'Los zapatos de Juana',1,225,100,1),
+(10007,'Tasa de café',7,226,200.5,1),
+(10008,'Los pecesitos',2,227,100.5,2),
+(10009,'El sueño dorado',4,228,99.9,2),
+(10010,'Andrés',8,229,200.5,4),
+(10011,'Tasa de café 2',1,230,200.5,1),
+(10012,'LA tortuga',1,231,85.9,null),
+(10013,'a felicidad',1,232,600.5,null),
+(10014,'Encontrando a Nemo',2,233,200.5,2),
+(10015,'El arcoiris',7,234,800.5,null),
+(10016,'Programación web extensa',7,235,100.5,null),
+(10017,'Sin ti',4,236,200.5,null);
+
+
+
+INSERT INTO libros(codigolibro,titulo, codigoautor,codigoeditorial,precio,cantidad)
+VALUES(10018,'Los sueños de Andrea',4,238,450,5),
+(10019,'Antonieta',1,239,200.5,2),
+(10020,'Cocinando sueños',9,240,100.5,3),
+(10021,'El perdedor',7,241,400,4),
+(10022,'Doña Juana',4,232,500.5,1),
+(10023,'Caperuza busa',1,228,100,1),
+(10024,'Es resplandor',2,226,200.5,1),
+(10025,'Volver a comenzar',4,225,100.5,2),
+(10026,'La sonrisa de Amalia',80,228,99.9,2),
+(10027,'El piano de Jose',81,229,238.5,4),
+(10028,'El huerto del terror',82,221,200.5,1),
+(10029,'El payaso de las tinieblas',83,221,85.9,null),
+(10030,'El bals de la esperanza',84,220,600.5,null),
+(10031,'Buscando a Hyun',85,226,200.5,2),
+(10032,'El arcoiris II',86,221,800.5,null),
+(10033,'Programación en Java a fondo',87,227,100.5,null),
+(10034,'Calculo I',88,232,200.5,null),
+(10035,'Aprender CSS con Flor',88,220,600.5,null),
+(10036,'MySQL a fondo',88,226,200.5,2),
+(10037,'Calculo II',87,221,800.5,null),
+(10038,'Programación en Java a fondo II',2,227,100.5,null),
+(10039,'Calculo III',1,232,200.5,null);
+
+Tabla editorial:
+
+CREATE TABLE editorial(
+codigo_editorial INTEGER,
+nombre VARCHAR(45),
+ciudad VARCHAR(45),
+estado VARCHAR(45)
+);
+
+INSERT INTO editorial VALUES(220,'Mexico','Tijuana','Baja California'),
+(221,'El buen lector','Celaya','Guanajuato'),
+(222,'El capricho','Leon','Guanajuato'),
+(223,'Forever 89','Mazatlan','Sinaloa'),
+(224,'1950','Hermosillo','Sonora'),
+(225,'Violeta','Navojoa','Sonora'),
+(226,'Esperanza','Monterrey','Nuevo Leon'),
+(227,'La luna','Monterrey','Nuevo Leon'),
+(228,'Horizonte del mañana','Puebla','Puebla'),
+(229,'Las flores','Guadalajara','Jalisco'),
+(230,'Renacer','Puerto Vallarta','Jalisco'),
+(231,'Celeste','Tepic','Nayarit'),
+(232,'Antonios','Guadalajara','Jalisco');
+
+//Insertar más datos a la tabla editorial.
+
+INSERT INTO editorial VALUES(233,'Madrid','Tijuana','Baja California'),
+(234,'Paris','Mexicali','Baja California'),
+(235,'California','Monterrey','Nuevo Leon'),
+(236,'Monterrey','Monterrey','Nuevo Leon'),
+(237,'Editorial Castellana','Guadalajara','Jalisco'),
+(238,'La aventura lectora','Monterrey','Nuevo Leon');
+
+ALTER TABLE editorial RENAME COLUMN nombre TO nombreeditorial;
+
+Insertamos más datos:
+
+INSERT INTO editorial VALUES(800,'Los ojos del lector','Tijuana','Baja California'),
+(801,'El puerto','Celaya','Guanajuato'),
+(802,'El intelectual','Leon','Guanajuato'),
+(803,'Cartoons','Mazatlan','Sinaloa'),
+(804,'Renacer','Hermosillo','Sonora'),
+(805,'La casita del lector','Navojoa','Sonora'),
+(806,'La hermosa','Monterrey','Nuevo Leon');
+
+Autores:
+
+CREATE TABLE autores(
+codigo_autor INTEGER PRIMARY KEY,
+nombre_autor VARCHAR(45)
+);
+INSERT INTO autores VALUES(1,'Luis Jimenez');
+INSERT INTO autores VALUES(2,'Camila Luna');
+INSERT INTO autores VALUES(3,'Flors');
+INSERT INTO autores VALUES(4,'Shakmuria');
+INSERT INTO autores VALUES(5,'Juan Roman');
+INSERT INTO autores VALUES(6,'Gabriel Esparza');
+INSERT INTO autores VALUES(7,'Gladys Perez');
+INSERT INTO autores VALUES(8,'William Dominguez');
+INSERT INTO autores VALUES(9,'Luis Jimenez');
+INSERT INTO autores VALUES(10,'Catalina Vega');
+INSERT INTO autores VALUES(11,'Daniel Gonzalez');
+INSERT INTO autores VALUES(12,'Claudia Sanchez');
+INSERT INTO autores VALUES(13,'Vladimir Esparza');
+INSERT INTO autores VALUES(14,'Luis Campos');
+INSERT INTO autores VALUES(15,'Jose Carlos Luna');
+
+
+
