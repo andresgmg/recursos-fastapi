@@ -7,8 +7,12 @@ name = "pypi"
 fastapi = "*"
 uvicorn = "*"
 pydantic = "*"
+pytest = ">=7.1.2"
 
 [dev-packages]
 
 [requires]
 python_version = "3.11"
+
+[scripts]
+server = "uvicorn api:app --reload"
