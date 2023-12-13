@@ -29,24 +29,7 @@ async def index():
     return JSONResponse(content=content)
 
 
-@app.get("/html/", response_class=HTMLResponse)
-async def html():
-    content = """
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>¡Hola mundo!</title>
-    </head>
-    <body>
-        <h1>¡Hola mundo!</h1>
-    </body>
-    </html>
-    """
-    return content
-
-
-@app.get("/clientes/")
+@app.get("/clientes/listar")
 async def clientes():
     content = [
         {
@@ -73,7 +56,7 @@ async def clientes_buscar(dni: str):
         raise HTTPException(status_code=404, detail="Cliente no encontrado!")
 
 
-@app.post("/clientes/crear/")
+@app.post("/clientes/crear")
 async def clientes_crear(datos: ModelCrearCliente):
     cliente = db.Clientes.crear(datos.dni, datos.nombre, datos.apellido)
     if cliente:
@@ -87,4 +70,30 @@ async def clientes_crear(datos: ModelCrearCliente):
         raise HTTPException(status_code=400, detail="Cliente no creado!")
 
 
-print("Servidor de la API...")
+@app.put("/clientes/actualizar")
+async def clientes_actualizar(datos: ModelCliente):
+    if db.Clientes.buscar(datos.dni):
+        cliente = db.Clientes.modificar(datos.dni, datos.nombre, datos.apellido)
+        if cliente:
+            cliente_serializable = {
+                "dni": cliente.dni,
+                "nombre": cliente.nombre.encode("latin-1").decode("utf-8"),
+                "apellido": cliente.apellido.encode("latin-1").decode("utf-8"),
+            }
+            return JSONResponse(content=cliente_serializable, status_code=200)
+    else:
+        raise HTTPException(status_code=404, detail="Cliente no encontrado!")
+
+
+@app.delete("/clientes/borrar/{dni}")
+async def clientes_borrar(dni: str):
+    if db.Clientes.buscar(dni):
+        cliente = db.Clientes.borrar(dni=dni)
+        cliente_serializable = {
+            "dni": cliente.dni,
+            "nombre": cliente.nombre.encode("latin-1").decode("utf-8"),
+            "apellido": cliente.apellido.encode("latin-1").decode("utf-8"),
+        }
+        return JSONResponse(content=cliente_serializable, status_code=200)
+    else:
+        raise HTTPException(status_code=404, detail="Cliente no encontrado!")
