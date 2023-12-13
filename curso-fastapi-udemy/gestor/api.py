@@ -4,6 +4,13 @@ from pydantic import BaseModel, constr, validator
 import database as db
 import helpers
 
+tags_metadata = [
+    {
+        "name": "Clientes",
+        "description": "Operaciones con clientes. Todo el CRUD se encuentra aca.",
+    }
+]
+
 
 class ModelCliente(BaseModel):
     dni: constr(min_length=3, max_length=3)
@@ -20,16 +27,15 @@ class ModelCrearCliente(ModelCliente):
             raise ValueError("Cliente ya existente o DNI incorrecto!")
 
 
-app = FastAPI()
+app = FastAPI(
+    openapi_tags=tags_metadata,
+    title="Api del gestor de clientes",
+    description="Ofrece diferentes funciones para gestionar los clientes de una base de datos en formato .csv",
+    version="1.0",
+)
 
 
-@app.get("/")
-async def index():
-    content = {"mensaje": "¡Hola mundo!"}
-    return JSONResponse(content=content)
-
-
-@app.get("/clientes/listar")
+@app.get("/clientes/listar", tags=["Clientes"])
 async def clientes():
     content = [
         {
@@ -42,7 +48,7 @@ async def clientes():
     return JSONResponse(content=content)
 
 
-@app.get("/clientes/buscar/{dni}")
+@app.get("/clientes/buscar/{dni}", tags=["Clientes"])
 async def clientes_buscar(dni: str):
     cliente = db.Clientes.buscar(dni=dni)
     if cliente:
@@ -56,7 +62,7 @@ async def clientes_buscar(dni: str):
         raise HTTPException(status_code=404, detail="Cliente no encontrado!")
 
 
-@app.post("/clientes/crear")
+@app.post("/clientes/crear", tags=["Clientes"])
 async def clientes_crear(datos: ModelCrearCliente):
     cliente = db.Clientes.crear(datos.dni, datos.nombre, datos.apellido)
     if cliente:
@@ -70,7 +76,7 @@ async def clientes_crear(datos: ModelCrearCliente):
         raise HTTPException(status_code=400, detail="Cliente no creado!")
 
 
-@app.put("/clientes/actualizar")
+@app.put("/clientes/actualizar", tags=["Clientes"])
 async def clientes_actualizar(datos: ModelCliente):
     if db.Clientes.buscar(datos.dni):
         cliente = db.Clientes.modificar(datos.dni, datos.nombre, datos.apellido)
@@ -85,7 +91,7 @@ async def clientes_actualizar(datos: ModelCliente):
         raise HTTPException(status_code=404, detail="Cliente no encontrado!")
 
 
-@app.delete("/clientes/borrar/{dni}")
+@app.delete("/clientes/borrar/{dni}", tags=["Clientes"])
 async def clientes_borrar(dni: str):
     if db.Clientes.buscar(dni):
         cliente = db.Clientes.borrar(dni=dni)
