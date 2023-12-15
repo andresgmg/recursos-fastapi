@@ -16,4 +16,4 @@ requests = "*"
 python_version = "3.11"
 
 [scripts]
-server = "uvicorn api:app --reload"
+server = "uvicorn main:app --reload"

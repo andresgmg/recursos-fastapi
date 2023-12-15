@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from pydantic import BaseModel, constr, validator
 import database as db
 import helpers
@@ -33,6 +33,11 @@ app = FastAPI(
     description="Ofrece diferentes funciones para gestionar los clientes de una base de datos en formato .csv",
     version="1.0",
 )
+
+
+@app.get("/")
+async def index():
+    return RedirectResponse("/docs")
 
 
 @app.get("/clientes/listar", tags=["Clientes"])
